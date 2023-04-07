@@ -1,0 +1,146 @@
+General Astronomy Tasks
+
+  ad2rad
+       h:m:s d:m:s -> radians
+  angle2size
+      angular to proper size conversion in different cosmologies
+  size2angle
+       proper to angular size conversion in different cosmologies
+  distance
+       angular distance between two points on the sky
+  rad2ad
+       radians -> h:m:s d:m:s
+FITS Data Manipulations
+
+  addcomm
+       add comment records to FITS header
+  addhist
+       adds history records to FITS header
+  chimtype
+       change data type (e.g. real->integer) in an image. Data may be optionally rescaled.
+  copyheader
+       copy header keywords from one FITS file to another (see also FTOOL cphead).
+  copywcs
+       copy just the World Coordinate System keywords from the header of one FITS image to others.
+  fcolappend
+       append a constant column to a FITS table
+  fitsparsename
+       Prints components of the extended FITS file name.
+  fitspha
+       convert ASCII files to FITS PHA (see also FTOOL ascii2pha).
+  gtiexp
+       prints out the total exposure of the GTI file
+  gtifits
+       converts ASCII GTI files to FITS format
+  iffits
+       prints 1 if its argument is a fits file, 0 otherwise
+  listfits
+       print out FITS header keywords. See also listhead supplied with FITSIO.
+  modifyheader
+       modifies FITS header. This tools is derived from FTOOL fmodhead but incorporates two important improvements
+  printkey
+       prints a FITS keyword value
+  rfits
+       convert fits image to unformatted fortran file
+  wfits
+       convert unformatted fortran file to fits
+Image Tasks
+
+  adapt
+       smooth an image with circular top hat filter of adaptive size
+  addimages
+       coadd images in the sky coordinates
+  atrous
+       convolve an image with `a trous wavelet
+  contmap
+       draw a contour map
+  createimg
+       make a constant value image
+  dsscoord
+       DSS pixels to sky coordinates
+  dssdetect
+       detect sources in DSS plates
+  dssoverlay
+       overlay contours on DSS (or any other) image
+  findpeak
+       find local maxima in an image
+  gaussimg
+       simulate a Gaussian image
+  imarith
+       simple arith. on two images. See also imcalc and imcarith
+  imblock
+       block and reblock the image
+  imcalc
+       arbitrary image calculus; for simple arithmetic, see imarith and imcarith
+  imcarith
+       constant value arithmetics with an image. Also sqrt, min, max, abs
+  imcopy
+       provided for image manupulation using FITSIO's extended name syntax
+  imdiff
+       reports pixel-by-pixel difference of two images
+  imexam
+       report many image statistics
+  img2list
+       convert integer image to pixel list
+  improj
+       projection of a 2-d image along a direction
+  imsmo
+       smooth image with a Gaussian filter
+  island
+       find connected domains in an image
+  kingimg
+       simulate a beta-model image
+  list2img
+       convert ASCII `photon list' to an image
+  makeimg
+       make an image from FITS events files. Probably made obsolete by fitscopy
+  mexhat
+       convolve an image with the Mexican Hat wavelet
+  mkcond
+       logical operation on an image
+  mkedge
+       set image to a value outside the given radius
+  mkprof
+       calculate radial surface brightness profile
+  mkreg
+       make a mask image from the ASCII region descriptor
+  pix2sky
+       pixels -> sky coordinates
+  poisson
+       simulate Poisson scatter
+  prof2img
+       convert radial surface brightness profile to a 2d image
+  saoimage2reg
+       translate SAOimage region file to the zhtools region descriptor; this tool is almost obsolete 
+       because zhtools now understand SAOimage reg.files (see regions)
+  savecont
+       save contours for further use by dssoverlay
+  scatter
+       add Gaussian scatter to an image
+  select
+       apply temp, energy and spatial selection to a FITS events file; probably made obsolete by fitscopy
+  setval
+       set image value in a region
+  sky2pix
+       sky coordinates -> pixels
+  sky2dss
+       sky coordinates -> DSS pixels
+  stackimages
+       adds several images without shift
+  transreg
+       translate region from one WCS to another
+  wvdecomp
+       wavelet decomposition
+ROSAT-Specific Tasks
+
+  extrrosatspec
+       extract spectrum in 34 ROSAT channels
+  makerosatpsf
+       make ROSAT PSPC PSF image for given source positions
+  makesnowdenspec
+       make spectrum from Snowden's images
+  rosatpsffwhm
+       return FWHM of the PSPC PSF
+Misc Tasks
+
+  getpar

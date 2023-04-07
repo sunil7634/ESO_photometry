@@ -1,0 +1,150 @@
+
+DUAL_IMAGE_MODE_SExtractor
+
+--------------------------------------------------------
+
+some useful tips: http://www.ifa.hawaii.edu/~rgal/science/sextractor_notes.html
+
+————————————————————————————
+
+EXAMPLE
+
+$ sex ../../../TestESO_137_002/OriginalFiles/output_drc/F814W-ES0_137_002_drc.fits[1],../../../TestESO_137_002/OriginalFiles/output_drc/F814W-ES0_137_002_drc.fits[1] -c ESO_dual_F814WxF814W.conf  #don’t give space between two images, just seperate them by ‘,’ with no space and don’t forget to put extension [1].
+
+ 
+
+#1st image = detector , 2nd =analysis/measurement
+
+ 
+
+—————————————————————————————
+
+1. for F814W 
+
+ 
+
+0. PREREQUISITE: ESO_dual_F814WxF814W.conf, ESO_dual.param, gauss_3.0_7x7.conv
+
+ 
+
+FILTER	MAG_ZEROPOINT	EXP TIME
+F814W	25.984 [http://www.stsci.edu/hst/acs/analysis/zeropoints]	678.000 
+F475W	26.059 	1728.000 
+F275W	24.169[http://www.stsci.edu/hst/wfc3/analysis/uvis_zpts/uvis1_infinite]	3030.000 
+F160W 	25.9463 [http://www.stsci.edu/hst/wfc3/analysis/ir_phot_zpt]	798.466 
+ 
+
+  #Calculate Zeropoints
+
+  stMagZPt = -2.5*np.log10(photFlam) - 21.1
+
+  abMagZpt = -2.5*np.log10(photFlam) - 21.1 - 5*np.log10(photPlam) + 18.692
+ 
+
+1. PATH to directory: ~/Documents/TestSextractor/sunilSExtractor/F814W
+
+2. DETECT_THRESH: 6.5 #default was 1.5 but modified inorder to minimize the pixel stack overflow warning (also can be minimized by editing the memory values in memory section of .conf file
+
+3. CATALOG_NAME: ESO_F814WxF814W.cat #output file created
+
+4. GAIN: 678.0 #exposure time. Two ways to find exp.time
+
+ 
+
+method1. 
+
+go to MAST HST url and search the target, after you are in HST Search Results, look up in the (xrow, ycolumn)=(F814W,Exp Time) which is 678.00 s 
+
+ 
+
+method2.
+
+open two *flc.fits in DS9, open the header(but not the [SCI])- in the section EXPOSURE INFORMATION, look up for EXPTIME, since you have two flc files you need to add to get total exposure time. 
+
+ 
+
+5. MAG_ZEROPOINT: to get the AB_ZERO_POINT magnitude 
+
+EITHER go to MAST HST url and search the target, after you are in HST Search Results, look up in the (xrow,ycol) =(F814W, Start Time) to get the date 
+
+ 
+
+OR open ds9 *flc.FITS  and open the header [SCI] - in the section EXPOSURE INFORMATION, look for DATE-OBS, as you will need later to find the magnitude
+
+ 
+
+Now open HST ACS ZEROPOINTS AND FLUX CALIBRATION in the url[http://www.stsci.edu/hst/acs/analysis/zeropoints], click the zeropoints which is on the right side. now look up for the ZEROPOINT CALCULATOR, [https://acszeropoints.stsci.edu/]
+
+ 
+
+In the calculator, type date [2011-07-17] and choose the option[i.e. WFC], you will see your required mag  25.984 in the last column[i.e. ABmag]
+
+ 
+
+FOR WFC3/UVIS	#which mag is correct i.e. UVIS1 OR UVIS2
+
+go to http://www.stsci.edu/hst/wfc3/analysis/uvis_zpts/uvis1_infinite
+
+from the UVIS1 Photometry Tables, get the ABmag of F275W 
+
+Alternately, you can use PHOTPLAM, PHOTFLAM -values to calculate ABmag
+
+>> from astroptical.photometry import zeropoint
+
+>> zeropoint(4,5)  
+
+>> zeropoint(PHOTFLAM, PHOTPLAM)
+
+ 
+
+FOR WFC3/IR
+
+go to http://www.stsci.edu/hst/wfc3/analysis/ir_phot_zpt
+
+ 
+
+ 
+
+6. WEIGHT_IMAGE: get < name_rms.fits > file called weight image.  for more information see /Information/AstrOptical_CR_SEx_FitsUt #having chip-gap in wt. im. is ok.
+
+ 
+
+7. WEIGHT_GAIN : N,N #but in ur code it is only N
+
+ 
+
+8. PHOT_APERTURES: ?? #how to define aperture sizes
+
+ 
+
+DETECT_THRESH: 6.5 #default 1.5
+
+Objects: detected 7393     / sextracted 7047  
+
+ 
+
+ 
+
+2. For F475W
+
+DETECT_THRESH: 5.0 #default 1.5
+
+Objects: detected 7391     / sextracted 6956  
+
+ 
+
+3. For F275W
+
+DETECT_THRESH           1.5
+
+ Objects: detected 2988     / sextracted 2797 
+
+ 
+
+4. For F160W
+
+------------
+
+------------
+
+ 
